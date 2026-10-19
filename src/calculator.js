@@ -5,6 +5,9 @@
 //   - subtraction    (subtract)
 //   - multiplication (multiply)
 //   - division       (divide)  -- throws on division by zero
+//   - modulo         (modulo)
+//   - power          (power)
+//   - square root    (squareRoot) -- throws on negative input
 
 function add(a, b) { return a + b; } // addition
 function subtract(a, b) { return a - b; } // subtraction
@@ -14,7 +17,17 @@ function divide(a, b) { // division
   return a / b;
 }
 
-const ops = { add, subtract, multiply, divide };
+function modulo(a, b) { // modulo
+  if (b === 0) throw new Error('Modulo by zero');
+  return a % b;
+}
+function power(base, exponent) { return base ** exponent; } // exponentiation
+function squareRoot(n) { // square root
+  if (n < 0) throw new Error('Square root of negative number');
+  return Math.sqrt(n);
+}
+
+const ops = { add, subtract, multiply, divide, modulo, power, squareRoot };
 
 if (require.main === module) {
   const [op, a, b] = process.argv.slice(2);
